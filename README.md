@@ -4,6 +4,7 @@
 |---| ----- | -------- | ------- |
 |111|[ Minimum Depth of Binary Tree](https://leetcode.com/problems/minimum-depth-of-binary-tree/)|[C++](./solutions/111.%20Minimum%20Depth%20of%20Binary%20Tree.cpp)|556 ms|
 |112|[ Path Sum](https://leetcode.com/problems/path-sum/)|[C++](./solutions/112.%20Path%20Sum.cpp)|8 ms|
+|144|[ Binary Tree Preorder Traversal](https://leetcode.com/problems/binary-tree-preorder-traversal/)|[C++](./solutions/144.%20Binary%20Tree%20Preorder%20Traversal.cpp)|0 ms|
 |463|[ Island Perimeter](https://leetcode.com/problems/island-perimeter/)|[C++](./solutions/463.%20Island%20Perimeter.cpp)|92 ms|
 |657|[ Robot Return to Origin](https://leetcode.com/problems/robot-return-to-origin/)|[C++](./solutions/657.%20Robot%20Return%20to%20Origin.cpp)|8 ms|
 |684|[ Redundant Connection](https://leetcode.com/problems/redundant-connection/)|[C++](./solutions/684.%20Redundant%20Connection.cpp)|8 ms|

@@ -7,6 +7,7 @@
 |112|[ Path Sum](https://leetcode.com/problems/path-sum/)|[C++](./solutions/112.%20Path%20Sum.cpp)|8 ms|
 |144|[ Binary Tree Preorder Traversal](https://leetcode.com/problems/binary-tree-preorder-traversal/)|[C++](./solutions/144.%20Binary%20Tree%20Preorder%20Traversal.cpp)|0 ms|
 |463|[ Island Perimeter](https://leetcode.com/problems/island-perimeter/)|[C++](./solutions/463.%20Island%20Perimeter.cpp)|92 ms|
+|543|[ Diameter of Binary Tree](https://leetcode.com/problems/diameter-of-binary-tree/)|[C++](./solutions/543.%20Diameter%20of%20Binary%20Tree.cpp)|8 ms|
 |657|[ Robot Return to Origin](https://leetcode.com/problems/robot-return-to-origin/)|[C++](./solutions/657.%20Robot%20Return%20to%20Origin.cpp)|8 ms|
 |684|[ Redundant Connection](https://leetcode.com/problems/redundant-connection/)|[C++](./solutions/684.%20Redundant%20Connection.cpp)|8 ms|
 |685|[ Redundant Connection II](https://leetcode.com/problems/redundant-connection-ii/)|[C++](./solutions/685.%20Redundant%20Connection%20II.cpp)|4 ms|

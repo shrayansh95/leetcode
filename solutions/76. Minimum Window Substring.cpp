@@ -1,45 +1,26 @@
 class Solution {
 public:
     string minWindow(string s, string t) {
+        unordered_map<char, int> mp1, mp2;
+        for (char c : t) ++mp1[c];
+        int i = 0, j = 0, matchCount = 0, minLen = INT_MAX;
         string ans = "";
-        unordered_map<char, int> freqT;
-        for (char c : t) {
-            ++freqT[c];
-        }
-        int matchCount = 0, desiredMatchCount = t.length();
-        unordered_map<char, int> freqS;
-        string temp;
-        int i = 0, j = 0;
-        bool f1, f2;
-        while (true) {
-            f1 = false;
-            f2 = false;
-            // acquire 
-            while (j < s.length() and matchCount < desiredMatchCount) {
-                ++freqS[s[j]];
-                if (freqS[s[j]] <= freqT[s[j]]) {
-                    ++matchCount; 
+        for (; j < s.length(); j++) {
+            if (mp1.find(s[j]) != mp1.end()) {
+                ++mp2[s[j]];
+                if (mp2[s[j]] <= mp1[s[j]]) {
+                    ++matchCount;
                 }
-                ++j;
-                f1 = true;
             }
-        
-            // collect ans and release
-            while (i < j and matchCount == desiredMatchCount) {
-                temp = s.substr(i, j - i);
-                if (ans.length() == 0 or temp.length() < ans.length()) {
-                    ans = temp;
+            if (matchCount == t.length()) {
+                while (mp1.find(s[i]) == mp1.end() or mp2[s[i]] > mp1[s[i]]) {
+                    --mp2[s[i]];
+                    ++i;
                 }
-                --freqS[s[i]];
-                if (freqT.find(s[i]) != freqT.end() and freqS[s[i]] < freqT[s[i]]) {
-                    --matchCount;
+                if (j - i + 1 < minLen) {
+                    minLen = j - i + 1;
+                    ans = s.substr(i, minLen);
                 } 
-                f2 = false;
-                ++i;
-            }
-            
-            if (!f1 and !f2) {
-                break;
             }
         }
         return ans;

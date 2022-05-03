@@ -3,13 +3,11 @@ class Solution {
         int end = -2, start = -1, n = nums.length, max = nums[0], min = nums[n - 1];
         for (int i = 1; i < n; ++i) {
             max = Math.max(nums[i], max);
-            if (max > nums[i])
+            min = Math.min(nums[n - i - 1], min);
+            if (nums[i] < max)
                 end = i;
-        }
-        for (int i = n - 1; i >= 0; --i) {
-            min = Math.min(nums[i], min);
-            if (min < nums[i])
-                start = i;
+            if (nums[n - i - 1] > min)
+                start = n - i - 1;
         }
         return (end - start + 1);
     }

@@ -3,11 +3,13 @@ I was majorly confused with the combination solution. [This](https://math.libret
 Following the lead from the article mentioned above, the problem asks us to pick n letters with repetition from "a, e, i, o, u" without permutation (without permutation is because the pick must be in order). Let's say n = 3, it can be
 
 a | e | i | o | u
+
 1 | 1 | 1 |   |
 
 or
 
 a | e | i | o | u
+
 | 2 |   | 1 |
 
 Notice the use of | as separators between letters. If we use a generic "x" to indicate the position a letter is picked, and also give all the | separators positions as well, the two options shown above can be written as:

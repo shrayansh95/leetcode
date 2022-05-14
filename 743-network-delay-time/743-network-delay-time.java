@@ -25,7 +25,6 @@ class Solution {
                 }
             }
         }
-        System.out.println(n);
         return (n == 0 ? ans : -1);
     }
 }

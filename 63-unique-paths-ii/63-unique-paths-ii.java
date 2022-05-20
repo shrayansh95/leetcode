@@ -1,25 +1,25 @@
 class Solution {
     public int uniquePathsWithObstacles(int[][] obstacleGrid) {
         int m = obstacleGrid.length, n = obstacleGrid[0].length;
-        int dp[][] = new int[m][n];
-        int prevT = 0, prevL = 0, cur;
+        int prev[] = new int[n], cur[] = new int[n];
         for (int i = 0; i < m; ++i) {
             for (int j = 0; j < n; ++j) {
                 if (obstacleGrid[i][j] == 1) {
-                    dp[i][j] = 0;
+                    cur[j] = 0;
                 } else if (i == 0 && j == 0)
-                    dp[i][j] = 1;
+                    cur[j] = 1;
                 else {
                     int top = 0, left = 0;
                     if (i - 1 >= 0)
-                        top = dp[i - 1][j];
+                        top = prev[j];
                     if (j - 1 >= 0)
-                        left = dp[i][j - 1];
-                    dp[i][j] = top + left;
+                        left = cur[j - 1];
+                    cur[j] = top + left;
                 }
             }
+            prev = cur;
         }
-        return dp[m - 1][n - 1];
+        return prev[n - 1];
     }
 //     private int solve(int grid[][], int i, int j, int dp[][]) {
 //         if (i < 0 || j < 0 || grid[i][j] == 1)

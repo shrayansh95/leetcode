@@ -8,16 +8,16 @@ class Solution {
         }
         nums.add(n);
         k -= 1;
-        char ans[] = new char[n];
+        String ans = "";
         int i = 0;
         while (true) {
-            ans[i++] = (char)(nums.get(k / fact) + 48);
-            nums.remove(nums.get(k / fact));
+            ans += Integer.toString(nums.get(k / fact));
+            nums.remove(k / fact);
             if (nums.size() == 0)
                 break;
             k %= fact;
             fact /= nums.size();
         }
-        return new String(ans);
+        return ans;
     }
 }

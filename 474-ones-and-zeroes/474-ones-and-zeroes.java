@@ -16,10 +16,10 @@ class Solution {
         }
         int dp[][] = new int[m + 1][n + 1];
         
-        for (int i = temp1; i >= 0; --i) {
+        for (int i = temp1 - 1; i >= 0; --i) {
             for (zero = m; zero >= 0; --zero) {
                 for (one = n; one >= 0; --one) {
-                    if (i == temp1 || (zero == 0 && one == 0)) {
+                    if (zero == 0 && one == 0) {
                         dp[zero][one] = 0;
                         continue;
                     }

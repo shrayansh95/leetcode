@@ -14,24 +14,39 @@ class Solution {
             }
             arr[i] = new Count(zero, one);
         }
-        int dp[][][] = new int[temp1][m + 1][n + 1];
-        for (int[][] it : dp) 
-            for (int[] it1 : it)
-                Arrays.fill(it1, -1);
-        return solve(arr, 0, temp1, m, n, dp);
+        int dp[][][] = new int[temp1 + 1][m + 1][n + 1];
+        
+        for (int i = temp1; i >= 0; --i) {
+            for (zero = 0; zero <= m; ++zero) {
+                for (one = 0; one <= n; ++one) {
+                    if (i == temp1 || (zero == 0 && one == 0)) {
+                        dp[i][zero][one] = 0;
+                        continue;
+                    }
+                    if (arr[i].zero > zero || arr[i].one > one) {
+                        dp[i][zero][one] = dp[i + 1][zero][one];
+                        continue;
+                    }
+                    int take = 1 + dp[i + 1][zero - arr[i].zero][one - arr[i].one];
+                    int notTake = dp[i + 1][zero][one];
+                    dp[i][zero][one] = Math.max(take, notTake);    
+                }
+            }
+        }
+        return dp[0][m][n];
     }
     
-    private int solve(Count arr[], int i, int size, int m, int n, int dp[][][]) {
-        if (i == size || (m == 0 && n == 0)) 
-            return 0;
-        if (dp[i][m][n] != -1)
-            return dp[i][m][n];
-        if (arr[i].zero > m || arr[i].one > n)
-            return dp[i][m][n] = solve(arr, i + 1, size, m, n, dp);
-        int take = 1 + solve(arr, i + 1, size, m - arr[i].zero, n - arr[i].one, dp);
-        int notTake = solve(arr, i + 1, size, m, n, dp);
-        return dp[i][m][n] = Math.max(take, notTake);
-    }
+    // private int solve(Count arr[], int i, int size, int zero, int one, int dp[][][]) {
+    //     if (i == size || (zero == 0 && one == 0)) 
+    //         return 0;
+    //     if (dp[i][zero][one] != -1)
+    //         return dp[i][zero][one];
+    //     if (arr[i].zero > zero || arr[i].one > one)
+    //         return dp[i][zero][one] = solve(arr, i + 1, size, zero, one, dp);
+    //     int take = 1 + solve(arr, i + 1, size, zero - arr[i].zero, one - arr[i].one, dp);
+    //     int notTake = solve(arr, i + 1, size, zero, one, dp);
+    //     return dp[i][zero][one] = Math.max(take, notTake);
+    // }
 }
 
 class Count {

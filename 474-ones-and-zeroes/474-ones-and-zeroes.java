@@ -14,26 +14,26 @@ class Solution {
             }
             arr[i] = new Count(zero, one);
         }
-        int dp[][][] = new int[temp1 + 1][m + 1][n + 1];
+        int dp[][] = new int[m + 1][n + 1];
         
         for (int i = temp1; i >= 0; --i) {
-            for (zero = 0; zero <= m; ++zero) {
-                for (one = 0; one <= n; ++one) {
+            for (zero = m; zero >= 0; --zero) {
+                for (one = n; one >= 0; --one) {
                     if (i == temp1 || (zero == 0 && one == 0)) {
-                        dp[i][zero][one] = 0;
+                        dp[zero][one] = 0;
                         continue;
                     }
                     if (arr[i].zero > zero || arr[i].one > one) {
-                        dp[i][zero][one] = dp[i + 1][zero][one];
+                        dp[zero][one] = dp[zero][one];
                         continue;
                     }
-                    int take = 1 + dp[i + 1][zero - arr[i].zero][one - arr[i].one];
-                    int notTake = dp[i + 1][zero][one];
-                    dp[i][zero][one] = Math.max(take, notTake);    
+                    int take = 1 + dp[zero - arr[i].zero][one - arr[i].one];
+                    int notTake = dp[zero][one];
+                    dp[zero][one] = Math.max(take, notTake);    
                 }
             }
         }
-        return dp[0][m][n];
+        return dp[m][n];
     }
     
     // private int solve(Count arr[], int i, int size, int zero, int one, int dp[][][]) {

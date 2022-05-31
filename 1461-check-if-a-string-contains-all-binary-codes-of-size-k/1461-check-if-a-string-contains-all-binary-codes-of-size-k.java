@@ -9,9 +9,11 @@ class Solution {
             val = (val << 1) | (s.charAt(i) - '0');
         set.add(val);
          for(int i = k; i < n && set.size() < totalSize; i++) {
-            val = (val << 1) | (s.charAt(i) - '0');
-            val -= ((s.charAt(i - k) - '0') << k);
-            set.add(val);
+             val = (val << 1) | (s.charAt(i) - '0');
+             int mask = (1 << k);
+             val &= (~mask);
+             // val -= ((s.charAt(i - k) - '0') << k);
+             set.add(val);
         }
         return set.size() == totalSize;
     }

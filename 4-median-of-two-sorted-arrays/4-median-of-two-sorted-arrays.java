@@ -17,7 +17,7 @@ class Solution {
             
             if (left1 <= right2 && left2 <= right1) {
                 if (((n1 + n2) & 1) == 1) 
-                    return (double)Math.max(left1, left2);
+                    return Math.max(left1, left2);
                 else 
                     return (Math.max(left1, left2) + Math.min(right1, right2)) / 2.0;
             } else if (left1 > right2) {
@@ -29,3 +29,4 @@ class Solution {
         return 0.0;
     }
 }
+

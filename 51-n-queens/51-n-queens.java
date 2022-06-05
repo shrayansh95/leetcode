@@ -12,19 +12,19 @@ class Solution {
             return;
         }
         for (int col = 0; col < n; ++col) {
-            if (!cols[col] && !right[col + row] && !left[n - 1 + col - row]) {
+            if (!cols[col] && !right[col + row] && !left[n - 1 + row - col]) {
                 char[] charArray = new char[n];
                 Arrays.fill(charArray, '.');
                 charArray[col] = 'Q';
                 temp.add(new String(charArray));
                 cols[col] = true;
                 right[col + row] = true;
-                left[n - 1 + col - row] = true;
+                left[n - 1 - col + row] = true;
                 solve(row + 1, n, cols, left, right, temp, ans);
                 temp.remove(temp.size() -1);
                 cols[col] = false;
                 right[col + row] = false;
-                left[n - 1 + col - row] = false;
+                left[n - 1 - col + row] = false;
             }
         }
     }

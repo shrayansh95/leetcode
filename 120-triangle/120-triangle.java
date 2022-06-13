@@ -2,16 +2,15 @@ class Solution {
     public int minimumTotal(List<List<Integer>> triangle) {
         int n = triangle.size();
         int dp[][] = new int[n][n];
-        for (int it[] : dp)
-            Arrays.fill(it, -1);
+        for (int c = 0; c < n; ++c)
+            dp[n - 1][c] = triangle.get(n - 1).get(c);
         
-        return solve(0, 0, triangle, n, dp);
-    }
-    private int solve(int r, int c, List<List<Integer>> triangle, int n, int dp[][]) {
-        if (r == n - 1)
-            return triangle.get(r).get(c);
-        if (dp[r][c] != -1)
-            return dp[r][c];
-        return dp[r][c] = triangle.get(r).get(c) + Math.min(solve(r + 1, c, triangle, n, dp), solve(r + 1, c + 1, triangle, n, dp));
+        for (int r = n - 2; r >= 0; --r) {
+            for (int c = 0; c < r + 1; ++c) {
+                dp[r][c] = triangle.get(r).get(c) + Math.min(dp[r + 1][c], dp[r + 1][c + 1]);
+            }
+        }
+        
+        return dp[0][0];
     }
 }

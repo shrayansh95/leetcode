@@ -2,7 +2,7 @@ class TrieNode {
     TrieNode[] children;
     int weight;
     public TrieNode() {
-        children = new TrieNode[27]; // 'a' - 'z' and '{'. 'z' and '{' are neighbours in ASCII table
+        children = new TrieNode[27]; 
         weight = 0;
     }
 }
@@ -16,7 +16,6 @@ public class WordFilter {
             for (int i = 0; i < word.length(); i++) {
                 TrieNode cur = root;
                 cur.weight = weight;
-    // add "apple{apple", "pple{apple", "ple{apple", "le{apple", "e{apple", "{apple" into the Trie Tree
                 for (int j = i; j < 2 * word.length() - 1; j++) {
                     int k = word.charAt(j % word.length()) - 'a';
                     if (cur.children[k] == null)

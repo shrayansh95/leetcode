@@ -58,8 +58,6 @@ class LRUCache {
     private void delete(Node pred, Node cur, Node succ) {
         pred.next = succ;
         succ.prev = pred;
-        cur.next = null;
-        cur.prev = null;
         map.remove(cur.key);
     }
     

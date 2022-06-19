@@ -7,12 +7,6 @@ class Node {
         this.next = null;
         this.prev = null;
     }
-    Node () {
-        this.key = 0;
-        this.val = 0;
-        this.next = null;
-        this.prev = null;
-    }
 }
 
 class LRUCache {
@@ -23,8 +17,8 @@ class LRUCache {
     public LRUCache(int capacity) {
         this.size = capacity;
         map = new HashMap<>();
-        head = new Node();
-        tail = new Node();
+        head = new Node(0, 0);
+        tail = new Node(0, 0);
         head.next = tail;
         tail.prev = head;
     }

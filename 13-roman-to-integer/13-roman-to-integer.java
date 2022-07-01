@@ -10,7 +10,7 @@ class Solution {
         map.put('M', 1000);
         int ans = 0, temp = 0, n = s.length(), i = 0;
         while (i < n) {
-            while (i < n - 1 && map.get(s.charAt(i)) < map.get(s.charAt(i + 1))) {
+            if (i < n - 1 && map.get(s.charAt(i)) < map.get(s.charAt(i + 1))) {
                 temp += map.get(s.charAt(i++));
             }
             ans += map.get(s.charAt(i++)) - temp;

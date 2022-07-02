@@ -1,6 +1,6 @@
 class Solution {
-    private final int MOD = 3;
-    private final int BASE = 31;
+    private final int MOD = 31;
+    private final int BASE = 29;
     public int repeatedStringMatch(String a, String b) {
         if (a == b)
             return 1;
@@ -35,12 +35,11 @@ class Solution {
         int winHash = getHash(a.substring(0, m), power);
         int left, right;
         for (int i = 0; i <= n - m; ++i) {
-            System.out.println(winHash);
             if (patHash == winHash && check(a, i, b, m)) 
                 return 1;
             
             left = (int)((a.charAt(i) - 'a' + 1) * 1L * power[m - 1]) % MOD;
-            winHash = (winHash - left) % MOD;
+            winHash = (winHash + MOD - left) % MOD;
             
             // Checking for overflow condition 
             if (i + m < n) {
@@ -48,8 +47,6 @@ class Solution {
                 winHash = (winHash * BASE) % MOD;
                 winHash = (winHash + right) % MOD;
             }
-            if (winHash < 0)
-                winHash += MOD;
         }
         return -1;
     }

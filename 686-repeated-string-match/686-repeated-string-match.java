@@ -33,13 +33,14 @@ class Solution {
         
         int patHash = getHash(b, power);
         int winHash = getHash(a.substring(0, m), power);
+        int left, right;
         for (int i = 0; i <= n - m; ++i) {
             if (patHash == winHash && check(a, i, b, m)) 
                 return 1;
-            int left = (int)((a.charAt(i) - 'a' + 1) * 1L * power[m - 1]) % MOD;
+            left = (int)((a.charAt(i) - 'a' + 1) * 1L * power[m - 1]) % MOD;
             winHash = (winHash + MOD - left) % MOD;
             if (i + m < n) {
-                int right = (int)(((a.charAt(i + m) - 'a' + 1) * 1L) % MOD);
+                right = (int)(((a.charAt(i + m) - 'a' + 1) * 1L) % MOD);
                 winHash = (winHash * BASE) % MOD;
                 winHash = (winHash + right) % MOD;
             }

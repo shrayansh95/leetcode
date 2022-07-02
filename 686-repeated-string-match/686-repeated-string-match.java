@@ -1,5 +1,5 @@
 class Solution {
-    private final int MOD = 1000000;
+    private final int MOD = 67;
     private final int BASE = 31;
     public int repeatedStringMatch(String a, String b) {
         if (a == b)
@@ -35,15 +35,21 @@ class Solution {
         int winHash = getHash(a.substring(0, m), power);
         int left, right;
         for (int i = 0; i <= n - m; ++i) {
+            System.out.println(winHash);
             if (patHash == winHash && check(a, i, b, m)) 
                 return 1;
+            
             left = (int)((a.charAt(i) - 'a' + 1) * 1L * power[m - 1]) % MOD;
-            winHash = (winHash + MOD - left) % MOD;
+            winHash = (winHash - left) % MOD;
+            
+            // Checking for overflow condition 
             if (i + m < n) {
                 right = (int)(((a.charAt(i + m) - 'a' + 1) * 1L) % MOD);
                 winHash = (winHash * BASE) % MOD;
                 winHash = (winHash + right) % MOD;
             }
+            if (winHash < 0)
+                winHash += MOD;
         }
         return -1;
     }
@@ -51,7 +57,8 @@ class Solution {
     private int getHash(String a, int power[]) {
         int n = a.length(), sum = 0;
         for (int i = n - 1; i >= 0; --i) 
-            sum = (int)((sum + ((a.charAt(i) - 'a' + 1) * 1L * power[n - i - 1]) % MOD) % MOD);
+            sum = (int)((sum + 
+                         ((a.charAt(i) - 'a' + 1) * 1L * power[n - i - 1]) % MOD) % MOD);
         return sum;
     }
     

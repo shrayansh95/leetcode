@@ -1,5 +1,5 @@
 class Solution {
-    private final int MOD = 67;
+    private final int MOD = 3;
     private final int BASE = 31;
     public int repeatedStringMatch(String a, String b) {
         if (a == b)

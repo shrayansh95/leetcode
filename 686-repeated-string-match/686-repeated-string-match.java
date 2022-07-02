@@ -1,6 +1,6 @@
 class Solution {
-    private final int MOD = 31;
-    private final int BASE = 29;
+    private final int MOD = 29;
+    private final int BASE = 26;
     public int repeatedStringMatch(String a, String b) {
         if (a == b)
             return 1;

@@ -20,7 +20,7 @@ class Solution {
         // because it has only those number of people who remembers the
         // secret right now 
         for (int i = n - forget + 1; i <= n; ++i)
-            ans = (int)((ans + dp[i]) % mod);
+            ans = (ans + dp[i]) % mod;
         return ans;
     }
 }

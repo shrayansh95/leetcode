@@ -12,9 +12,6 @@ class Solution {
         for (char ch : text)
             newString[i++] = ch;
         int Z[] = calculateZ(newString);
-        for (int it : Z) 
-            System.out.print(it + " ");
-        System.out.println();
         int n = Z.length, m = pattern.length;
         for (i = 0; i < n; ++i) 
             if (Z[i] == m)

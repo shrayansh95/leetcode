@@ -15,20 +15,30 @@
  */
 class Solution {
     public List<Integer> preorderTraversal(TreeNode root) {
-        List<Integer> ans = new ArrayList<>();
-        Stack<TreeNode> st = new Stack<>();
-        while (true) {
-            if (root != null) {
-                ans.add(root.val);
-                st.push(root);
-                root = root.left;
+        TreeNode cur = root;
+        List<Integer> preorder = new ArrayList<>();
+        while (cur != null) {
+            if (cur.left == null) {
+                preorder.add(cur.val);
+                cur = cur.right;
             } else {
-                if (st.isEmpty())
-                    break;
-                root = st.pop();
-                root = root.right;
+                TreeNode prev = cur.left;
+                // Find the rightmost node in the left subtree 
+                while (prev.right != null && prev.right != cur) 
+                    prev = prev.right;
+                if (prev.right == null) {
+                    // Connect the rightmost node to the root node 
+                    prev.right = cur;
+                    preorder.add(cur.val);
+                    cur = cur.left;
+                } else {
+                    // Remove the thread connection and traverse to the
+                    // right subtree 
+                    prev.right = null;
+                    cur = cur.right;
+                }
             }
         }
-        return ans;
+        return preorder;
     }
 }

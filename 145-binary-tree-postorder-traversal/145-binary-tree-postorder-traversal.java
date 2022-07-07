@@ -15,30 +15,32 @@
  */
 class Solution {
     public List<Integer> postorderTraversal(TreeNode root) {
-        List<Integer> ans = new ArrayList<>();
-        Stack<TreeNode> st = new Stack<>();
-        TreeNode temp;
-        while (true) {
-            if (root != null) {
-                st.push(root);
-                root = root.left;
+        TreeNode cur = root;
+        List<Integer> postorder = new ArrayList<>();
+        while (cur != null) {
+            if (cur.right == null) {
+                postorder.add(cur.val);
+                cur = cur.left;
             } else {
-                if(st.isEmpty())
-                    break;
-                temp = st.peek().right;
-                if (temp == null) {
-                    temp = st.pop();
-                    ans.add(temp.val);
-                    while (!st.isEmpty() && temp == st.peek().right) {
-                        temp = st.pop();
-                        ans.add(temp.val);
-                    }
+                TreeNode prev = cur.right;
+                // Find the rightmost node in the left subtree 
+                while (prev.left != null && prev.left != cur) 
+                    prev = prev.left;
+                if (prev.left == null) {
+                    // Connect the rightmost node to the root node 
+                    prev.left = cur;
+                    postorder.add(cur.val);
+                    cur = cur.right;
                 } else {
-                    root = temp;
+                    // Remove the thread connection and traverse to the
+                    // right subtree 
+                    prev.left = null;
+                    cur = cur.left;
                 }
             }
         }
-        return ans;
+        Collections.reverse(postorder);
+        return postorder;
     }
 }
 

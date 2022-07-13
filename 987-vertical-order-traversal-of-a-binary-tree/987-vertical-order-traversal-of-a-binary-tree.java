@@ -13,6 +13,7 @@
  *     }
  * }
  */
+import java.util.SortedMap;
 class Tuple {
     TreeNode node;
     int row, col;
@@ -27,7 +28,7 @@ class Solution {
     public List<List<Integer>> verticalTraversal(TreeNode root) {
         List<List<Integer>> ans = new ArrayList<>();
         Queue<Tuple> q = new LinkedList<>();
-        TreeMap<Integer, TreeMap<Integer, PriorityQueue<Integer>>> map = 
+        SortedMap<Integer, SortedMap<Integer, PriorityQueue<Integer>>> map = 
             new TreeMap<>();
         q.add(new Tuple(root, 0, 0));
         Tuple tuple;
@@ -55,7 +56,7 @@ class Solution {
                 q.add(new Tuple(node.right, lev + 1, ver + 1));
         }
         
-        for (TreeMap<Integer, PriorityQueue<Integer>> ys : map.values()) {
+        for (SortedMap<Integer, PriorityQueue<Integer>> ys : map.values()) {
             ans.add(new ArrayList<>());
             for (PriorityQueue<Integer> nodes : ys.values()) {
                 while (!nodes.isEmpty()) 

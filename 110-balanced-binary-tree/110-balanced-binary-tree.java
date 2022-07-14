@@ -24,9 +24,7 @@ class Solution {
         if (left == -1)
             return -1;
         int right = solve(root.right);
-        if (right == -1)
-            return -1;
-        if (Math.abs(left - right) > 1)
+        if (right == -1 || Math.abs(left - right) > 1)
             return -1;
         return 1 + Math.max(left, right);
     }

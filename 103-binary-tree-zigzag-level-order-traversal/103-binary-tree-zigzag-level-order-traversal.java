@@ -33,6 +33,8 @@ class Solution {
         
         while (!q.isEmpty()) {
             size = q.size();
+            // Implementing using LinkedList makes the push 
+            // at front operation O(1)
             List<Integer> level = new LinkedList<>();
             for (int i = 0; i < size; ++i) {
                 temp = q.poll();

@@ -17,14 +17,22 @@ class Solution {
     public boolean isSymmetric(TreeNode root) {
         if (root == null)
             return true;
-        return solve(root.left, root.right);
-    }
-    
-    private boolean solve(TreeNode root1, TreeNode root2) {
-        if (root1 == null || root2 == null)
-            return root1 == root2;
-        return (root1.val == root2.val &&
-               solve(root1.left, root2.right) &&
-               solve(root1.right, root2.left));
+        Queue<TreeNode> q = new LinkedList<>();
+        
+        q.add(root.left);
+        q.add(root.right);
+        
+        while (!q.isEmpty()) {
+            TreeNode left = q.poll(), right = q.poll();
+            if (left == null  && right == null)
+                continue;
+            if (left == null || right == null || left.val != right.val)
+                return false;
+            q.add(left.left);
+            q.add(right.right);
+            q.add(left.right);
+            q.add(right.left);
+        }
+        return true;
     }
 }

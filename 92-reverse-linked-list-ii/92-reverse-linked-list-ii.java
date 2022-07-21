@@ -10,46 +10,33 @@
  */
 class Solution {
     public ListNode reverseBetween(ListNode head, int left, int right) {
-        if (left == right)
-            return head;
-        ListNode beforeLeft = null, afterRight = null, temp = head;
-        ListNode prev = null, next = null, l = null, r = null;
-        int cnt = 1;
-        int flag = 0;
-        while (temp != null) {
-            if (cnt == left) {
-                l = temp;
-                flag = 1;
-                next = temp.next;
-                temp.next = prev;
-                prev = temp;
-                ++cnt;
-                temp = next;
-                continue;
-            }
-            if (flag == 0)
-                beforeLeft = temp;
-            else if (flag == 1) {
-                next = temp.next;
-                temp.next = prev;
-                prev = temp;
-                if (cnt == right) {
-                    afterRight = next;
-                    r = temp;
-                    l.next = afterRight;
-                    if (beforeLeft != null)
-                        beforeLeft.next = r;
-                    else 
-                        head = r;
-                    break;
-                }
-                temp = next;
-                ++cnt;
-                continue;
-            }
-            ++cnt;
-            temp = temp.next;
+        ListNode prev = null, cur = head;
+        while (left > 1) {
+            prev = cur;
+            cur = cur.next;
+            --left;
+            --right;
         }
+        
+        ListNode beforeLeft = prev;
+        ListNode afterRight = cur;
+        ListNode next;
+        
+        while (right > 0) {
+            next = cur.next;
+            cur.next = prev;
+            prev = cur;
+            cur = next;
+            --right;
+        }
+        
+        afterRight.next = cur;
+        
+        if (beforeLeft == null) 
+            head = prev;
+        else 
+            beforeLeft.next = prev;
+        
         return head;
     }
 }

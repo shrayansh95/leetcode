@@ -25,8 +25,7 @@ class NodeValue {
 class Solution {
     public int maxSumBST(TreeNode root) {
         int ans[] = new int[]{0};
-        int t = helper(root, ans).maxSum;
-        ans[0] = Math.max(ans[0], t);
+        ans[0] = Math.max(helper(root, ans).maxSum, ans[0]);
         return ans[0];
     }
     
